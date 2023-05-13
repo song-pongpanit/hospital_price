@@ -169,7 +169,8 @@ cooks.distance(data.lm)
 which(cooks.distance(data.lm) > qf(0.95,12,(239-11-1)))
 which(cooks.distance(data.lm) > 4/(239-11-1))
 # 1 2 4 7 10 12 13 15 24 30 37 58 63 65 83 131
-#-----------------------Studen deleted Residuals--------------------------------------------------#
+
+#------------------------------deleted outliers-------------------------------------------#
 # CUT 7 obs
 summary(lm(TOTAL.COST.TO.HOSPITAL ~ BODY.WEIGHT+HR.PULSE +
              relevel(factor(PAST.CODE),ref = "NONE")+
@@ -184,7 +185,6 @@ summary(lm(TOTAL.COST.TO.HOSPITAL ~ BODY.WEIGHT+HR.PULSE +
 summary(lm(TOTAL.COST.TO.HOSPITAL ~ BODY.WEIGHT+HR.PULSE +
              relevel(factor(PAST.CODE),ref = "NONE")+
              ICU.LENGHT + WARD.LENGHT + relevel(factor(IMPLANTATION),ref = "N")
-           42
            ,data= data.df[-36,]))
 # CUT 7,13 obs
 summary(lm(TOTAL.COST.TO.HOSPITAL ~ BODY.WEIGHT+HR.PULSE +
@@ -206,7 +206,7 @@ summary(lm(TOTAL.COST.TO.HOSPITAL ~ BODY.WEIGHT+HR.PULSE +
              relevel(factor(PAST.CODE),ref = "NONE")+
              ICU.LENGHT + WARD.LENGHT + relevel(factor(IMPLANTATION),ref = "N")
            ,data= data.df[-c(7,13,36),]))
-#-----------------------Studen deleted Residuals--------------------------------------------------#
+#-------------------------------deleted outliers------------------------------------------#
 data.lm2 <- lm(TOTAL.COST.TO.HOSPITAL ~ BODY.WEIGHT+HR.PULSE +
                  relevel(factor(PAST.CODE),ref = "NONE")+
                  ICU.LENGHT + WARD.LENGHT + relevel(factor(IMPLANTATION),ref = "N")
@@ -241,8 +241,7 @@ attach(data.dum.df2)
 head(data.dum.df2)
 str(data.dum.df2)
 multi.lm3 <- lm(sqrt(TOTAL.COST.TO.HOSPITAL) ~ (BODY.WEIGHT+HR.PULSE) +
-                  (PAST.CODE_Diabetes1)+(PAST.CODE_Diabetes2)+(PAST.CODE_hypertension1)+(PAST.CODE
-                                                                                         _hypertension2)+
+                  (PAST.CODE_Diabetes1)+(PAST.CODE_Diabetes2)+(PAST.CODE_hypertension1)+(PAST.CODE_hypertension2)+
                   (PAST.CODE_hypertension3)+(PAST.CODE_other)+
                   (ICU.LENGHT)+(WARD.LENGHT)+
                   (IMPLANTATION_Y)
